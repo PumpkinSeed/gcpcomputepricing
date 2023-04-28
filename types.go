@@ -1,17 +1,5 @@
 package gcpcomputepricing
 
-type Pricing struct {
-	GCP GCP `json:"gcp"`
-}
-
-type GCP struct {
-	Compute Compute `json:"compute"`
-}
-
-type Compute struct {
-	GCE map[string]map[string]interface{} `json:"gce"`
-}
-
 type Subtype struct {
 	Description string            `json:"description"`
 	Regions     map[string]Region `json:"regions"`
