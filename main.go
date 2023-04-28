@@ -2,6 +2,7 @@ package gcpcomputepricing
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 )
 
@@ -23,7 +24,16 @@ func Get() (*Pricing, error) {
 	}
 
 	var pricing Pricing
-	if err := json.NewDecoder(resp.Body).Decode(&pricing); err != nil {
+	//if err := json.NewDecoder(resp.Body).Decode(&pricing); err != nil {
+	//	return nil, err
+	//}
+	//return &pricing, nil
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := json.Unmarshal(data, &pricing); err != nil {
 		return nil, err
 	}
 	return &pricing, nil
