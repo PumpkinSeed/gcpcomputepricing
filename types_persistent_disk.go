@@ -4,64 +4,43 @@ type PersistentDisk struct {
 	AsyncReplication AsyncReplication        `json:"async_replication"`
 	Snapshots        PersistentDiskSnapshots `json:"snapshots"`
 	Diskops          Diskops                 `json:"diskops"`
-	Standard         struct {
-		Capacity struct {
-			Regional struct {
-				Regionalstoragepdcapacity Subtype `json:"regionalstoragepdcapacity"`
-			} `json:"regional"`
-			Storagepdcapacity Subtype `json:"storagepdcapacity"`
-		} `json:"capacity"`
-		Snapshot struct {
-			Storagepdsnapshot Subtype `json:"storagepdsnapshot"`
-		} `json:"snapshot"`
-	} `json:"standard"`
-	Ssd struct {
-		Capacity struct {
-			Regional struct {
-				Regionalstoragepdssd Subtype `json:"regionalstoragepdssd"`
-			} `json:"regional"`
-			Storagepdssd Subtype `json:"storagepdssd"`
-			Extreme      struct {
-				Storagepdssdextremecapacity Subtype `json:"storagepdssdextremecapacity"`
-				Storagepdssdextremeiops     Subtype `json:"storagepdssdextremeiops"`
-			} `json:"extreme"`
-			Lite struct {
-				Storagepdssdlitecapacity Subtype `json:"storagepdssdlitecapacity"`
-			} `json:"lite"`
-			RegionalLite struct {
-				Storageregionalpdssdlitecapacity Subtype `json:"storageregionalpdssdlitecapacity"`
-			} `json:"regional_lite"`
-		} `json:"capacity"`
-	} `json:"ssd"`
+	Standard         PersistentDiskStandard  `json:"standard"`
+	SSD              PersistentDiskSSD       `json:"ssd"`
 }
 
 type AsyncReplication struct {
-	BalancedProtection struct {
-		Asyncreplicationprotectionpdbalanced Subtype `json:"asyncreplicationprotectionpdbalanced"`
-		Regional                             struct {
-			Asyncreplicationprotectionregionalpdbalanced Subtype `json:"asyncreplicationprotectionregionalpdbalanced"`
-		} `json:"regional"`
-	} `json:"balanced_protection"`
-	SsdProtection struct {
-		Asyncreplicationprotectionpdssd Subtype `json:"asyncreplicationprotectionpdssd"`
-		Regional                        struct {
-			Asyncreplicationprotectionregionalpdssd Subtype `json:"asyncreplicationprotectionregionalpdssd"`
-		} `json:"regional"`
-	} `json:"ssd_protection"`
-	Networking struct {
-		Asia struct {
-			Asynchronousreplicationinterregionnetworkegress Subtype `json:"asynchronousreplicationinterregionnetworkegress"`
-		} `json:"asia"`
-		Europe struct {
-			Asynchronousreplicationinterregionnetworkegress Subtype `json:"asynchronousreplicationinterregionnetworkegress"`
-		} `json:"europe"`
-		NorthAmerica struct {
-			Asynchronousreplicationinterregionnetworkegress Subtype `json:"asynchronousreplicationinterregionnetworkegress"`
-		} `json:"north_america"`
-		Oceania struct {
-			Asynchronousreplicationinterregionnetworkegress Subtype `json:"asynchronousreplicationinterregionnetworkegress"`
-		} `json:"oceania"`
-	} `json:"networking"`
+	BalancedProtection BalancedProtection         `json:"balanced_protection"`
+	SsdProtection      SSDProtection              `json:"ssd_protection"`
+	Networking         AsyncReplicationNetworking `json:"networking"`
+}
+
+type BalancedProtection struct {
+	Asyncreplicationprotectionpdbalanced Subtype                    `json:"asyncreplicationprotectionpdbalanced"`
+	Regional                             BalancedProtectionRegional `json:"regional"`
+}
+
+type BalancedProtectionRegional struct {
+	Asyncreplicationprotectionregionalpdbalanced Subtype `json:"asyncreplicationprotectionregionalpdbalanced"`
+}
+
+type SSDProtection struct {
+	Asyncreplicationprotectionpdssd Subtype               `json:"asyncreplicationprotectionpdssd"`
+	Regional                        SSDProtectionRegional `json:"regional"`
+}
+
+type SSDProtectionRegional struct {
+	Asyncreplicationprotectionregionalpdssd Subtype `json:"asyncreplicationprotectionregionalpdssd"`
+}
+
+type AsyncReplicationNetworking struct {
+	Asia         AsyncReplicationNetworkingContinent `json:"asia"`
+	Europe       AsyncReplicationNetworkingContinent `json:"europe"`
+	NorthAmerica AsyncReplicationNetworkingContinent `json:"north_america"`
+	Oceania      AsyncReplicationNetworkingContinent `json:"oceania"`
+}
+
+type AsyncReplicationNetworkingContinent struct {
+	Asynchronousreplicationinterregionnetworkegress Subtype `json:"asynchronousreplicationinterregionnetworkegress"`
 }
 
 type PersistentDiskSnapshots struct {
@@ -76,4 +55,35 @@ type PersistentDiskSnapshots struct {
 
 type Diskops struct {
 	Pdiorequests Subtype `json:"pdiorequests"`
+}
+
+type PersistentDiskStandard struct {
+	Capacity struct {
+		Regional struct {
+			Regionalstoragepdcapacity Subtype `json:"regionalstoragepdcapacity"`
+		} `json:"regional"`
+		Storagepdcapacity Subtype `json:"storagepdcapacity"`
+	} `json:"capacity"`
+	Snapshot struct {
+		Storagepdsnapshot Subtype `json:"storagepdsnapshot"`
+	} `json:"snapshot"`
+}
+
+type PersistentDiskSSD struct {
+	Capacity struct {
+		Regional struct {
+			Regionalstoragepdssd Subtype `json:"regionalstoragepdssd"`
+		} `json:"regional"`
+		Storagepdssd Subtype `json:"storagepdssd"`
+		Extreme      struct {
+			Storagepdssdextremecapacity Subtype `json:"storagepdssdextremecapacity"`
+			Storagepdssdextremeiops     Subtype `json:"storagepdssdextremeiops"`
+		} `json:"extreme"`
+		Lite struct {
+			Storagepdssdlitecapacity Subtype `json:"storagepdssdlitecapacity"`
+		} `json:"lite"`
+		RegionalLite struct {
+			Storageregionalpdssdlitecapacity Subtype `json:"storageregionalpdssdlitecapacity"`
+		} `json:"regional_lite"`
+	} `json:"capacity"`
 }
