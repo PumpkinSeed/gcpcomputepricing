@@ -11,7 +11,7 @@ var (
 	httpClient = http.DefaultClient
 )
 
-func Get() (*Pricing, error) {
+func Fetch() (*Pricing, error) {
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return nil, err
