@@ -1,187 +1,24 @@
 package gcpcomputepricing
 
 type GCE struct {
-	VmsOnDemand    VmsOnDemand    `json:"vms_on_demand"`
-	VmsPreemptible VmsPreemptible `json:"vms_preemptible"`
-	VmsCommit1Year struct {
-		CoresPerCore struct {
-			Commitmenta2Highgpucpu1Yv1 Subtype `json:"commitmenta2highgpucpu1yv1"`
-			Commitmentc2Dcpu1Yv1       Subtype `json:"commitmentc2dcpu1yv1"`
-			C3                         struct {
-				Commitmentc3CPU1Yv1 Subtype `json:"commitmentc3cpu1yv1"`
-			} `json:"c3"`
-			Commitmentcpucomputeoptimized1Yv1 Subtype `json:"commitmentcpucomputeoptimized1yv1"`
-			Commitmentcpulargeinstance1Yv1    Subtype `json:"commitmentcpulargeinstance1yv1"`
-			Commitmentcpu1Yv1                 Subtype `json:"commitmentcpu1yv1"`
-			Commitmente2CPU1Yv1               Subtype `json:"commitmente2cpu1yv1"`
-			G2                                struct {
-				Commitmentg2CPU1Yv1 Subtype `json:"commitmentg2cpu1yv1"`
-			} `json:"g2"`
-			M3 struct {
-				Commitmentm3CPU1Yv1 Subtype `json:"commitmentm3cpu1yv1"`
-			} `json:"m3"`
-			Commitmentn2CPU1Yv1  Subtype `json:"commitmentn2cpu1yv1"`
-			Commitmentn2Dcpu1Yv1 Subtype `json:"commitmentn2dcpu1yv1"`
-			Commitmentt2Dcpu1Yv1 Subtype `json:"commitmentt2dcpu1yv1"`
-		} `json:"cores:_per_core"`
-		MemoryPerGb struct {
-			Commitmenta2Highgpuram1Yv1 Subtype `json:"commitmenta2highgpuram1yv1"`
-			Commitmentc2Dram1Yv1       Subtype `json:"commitmentc2dram1yv1"`
-			C3                         struct {
-				Commitmentc3RAM1Yv1 Subtype `json:"commitmentc3ram1yv1"`
-			} `json:"c3"`
-			Commitmente2RAM1Yv1 Subtype `json:"commitmente2ram1yv1"`
-			G2                  struct {
-				Commitmentg2RAM1Yv1 Subtype `json:"commitmentg2ram1yv1"`
-			} `json:"g2"`
-			M3 struct {
-				Commitmentm3RAM1Yv1 Subtype `json:"commitmentm3ram1yv1"`
-			} `json:"m3"`
-			Commitmentn2Dram1Yv1              Subtype `json:"commitmentn2dram1yv1"`
-			Commitmentn2RAM1Yv1               Subtype `json:"commitmentn2ram1yv1"`
-			Commitmentramcomputeoptimized1Yv1 Subtype `json:"commitmentramcomputeoptimized1yv1"`
-			Commitmentramlargeinstance1Yv1    Subtype `json:"commitmentramlargeinstance1yv1"`
-			Commitmentram1Yv1                 Subtype `json:"commitmentram1yv1"`
-			Commitmentt2Dram1Yv1              Subtype `json:"commitmentt2dram1yv1"`
-		} `json:"memory:_per_gb"`
-		Vmwareengineucs12Moprepay Subtype `json:"vmwareengineucs12moprepay"`
-	} `json:"vms_commit_1_year"`
-	VmsCommit3Year struct {
-		CoresPerCore struct {
-			Commitmenta2Highgpucpu3Yv1 Subtype `json:"commitmenta2highgpucpu3yv1"`
-			Commitmentc2Dcpu3Yv1       Subtype `json:"commitmentc2dcpu3yv1"`
-			C3                         struct {
-				Commitmentc3CPU3Yv1 Subtype `json:"commitmentc3cpu3yv1"`
-			} `json:"c3"`
-			Commitmentcpucomputeoptimized3Yv1 Subtype `json:"commitmentcpucomputeoptimized3yv1"`
-			Commitmentcpulargeinstance1Yv1    Subtype `json:"commitmentcpulargeinstance1yv1"`
-			Commitmentcpulargeinstance3Yv1    Subtype `json:"commitmentcpulargeinstance3yv1"`
-			Commitmentcpu3Yv1                 Subtype `json:"commitmentcpu3yv1"`
-			Commitmente2CPU3Yv1               Subtype `json:"commitmente2cpu3yv1"`
-			G2                                struct {
-				Commitmentg2CPU3Yv1 Subtype `json:"commitmentg2cpu3yv1"`
-			} `json:"g2"`
-			M3 struct {
-				Commitmentm3CPU3Yv1 Subtype `json:"commitmentm3cpu3yv1"`
-			} `json:"m3"`
-			Commitmentn2CPU3Yv1  Subtype `json:"commitmentn2cpu3yv1"`
-			Commitmentn2Dcpu3Yv1 Subtype `json:"commitmentn2dcpu3yv1"`
-			Commitmentt2Dcpu3Yv1 Subtype `json:"commitmentt2dcpu3yv1"`
-		} `json:"cores:_per_core"`
-		MemoryPerGb struct {
-			Commitmenta2Highgpuram3Yv1 Subtype `json:"commitmenta2highgpuram3yv1"`
-			Commitmentc2Dram3Yv1       Subtype `json:"commitmentc2dram3yv1"`
-			C3                         struct {
-				Commitmentc3RAM3Yv1 Subtype `json:"commitmentc3ram3yv1"`
-			} `json:"c3"`
-			Commitmente2RAM3Yv1 Subtype `json:"commitmente2ram3yv1"`
-			G2                  struct {
-				Commitmentg2RAM3Yv1 Subtype `json:"commitmentg2ram3yv1"`
-			} `json:"g2"`
-			M3 struct {
-				Commitmentm3RAM3Yv1 Subtype `json:"commitmentm3ram3yv1"`
-			} `json:"m3"`
-			Commitmentn2Dram3Yv1              Subtype `json:"commitmentn2dram3yv1"`
-			Commitmentn2RAM3Yv1               Subtype `json:"commitmentn2ram3yv1"`
-			Commitmentramcomputeoptimized3Yv1 Subtype `json:"commitmentramcomputeoptimized3yv1"`
-			Commitmentramlargeinstance3Yv1    Subtype `json:"commitmentramlargeinstance3yv1"`
-			Commitmentram3Yv1                 Subtype `json:"commitmentram3yv1"`
-			Commitmentt2Dram3Yv1              Subtype `json:"commitmentt2dram3yv1"`
-		} `json:"memory:_per_gb"`
-		Vmwareengineucs36Moprepay Subtype `json:"vmwareengineucs36moprepay"`
-	} `json:"vms_commit_3_year"`
-	NetworkOther struct {
-		Externalip            Subtype `json:"externalip"`
-		Externalippreemptible Subtype `json:"externalippreemptible"`
-	} `json:"network_other"`
-	FlexCommit1Year struct {
-		Gcecommitmentsucs12Mo Subtype `json:"gcecommitmentsucs12mo"`
-	} `json:"flex_commit_1_year"`
-	FlexCommit3Year struct {
-		Gcecommitmentsucs36Mo Subtype `json:"gcecommitmentsucs36mo"`
-	} `json:"flex_commit_3_year"`
-	PremiumImage struct {
-		Microsoft struct {
-			Windows struct {
-				Licensed1656378918552316916Core    Subtype `json:"licensed1656378918552316916core"`
-				Licensed1656378918552316916F1Micro Subtype `json:"licensed1656378918552316916f1micro"`
-				Licensed1656378918552316916G1Small Subtype `json:"licensed1656378918552316916g1small"`
-				Licensed3284763237085719542Core    Subtype `json:"licensed3284763237085719542core"`
-				Licensed3284763237085719542F1Micro Subtype `json:"licensed3284763237085719542f1micro"`
-				Licensed3284763237085719542G1Small Subtype `json:"licensed3284763237085719542g1small"`
-				Licensed4819555115818134498Core    Subtype `json:"licensed4819555115818134498core"`
-				Licensed4819555115818134498F1Micro Subtype `json:"licensed4819555115818134498f1micro"`
-				Licensed4819555115818134498G1Small Subtype `json:"licensed4819555115818134498g1small"`
-				Licensed4874454843789519845Core    Subtype `json:"licensed4874454843789519845core"`
-				Licensed4874454843789519845F1Micro Subtype `json:"licensed4874454843789519845f1micro"`
-				Licensed4874454843789519845G1Small Subtype `json:"licensed4874454843789519845g1small"`
-				Licensed6107784707477449232Core    Subtype `json:"licensed6107784707477449232core"`
-				Licensed6107784707477449232F1Micro Subtype `json:"licensed6107784707477449232f1micro"`
-				Licensed6107784707477449232G1Small Subtype `json:"licensed6107784707477449232g1small"`
-				Licensed7695108898142923768Core    Subtype `json:"licensed7695108898142923768core"`
-				Licensed7695108898142923768F1Micro Subtype `json:"licensed7695108898142923768f1micro"`
-				Licensed7695108898142923768G1Small Subtype `json:"licensed7695108898142923768g1small"`
-				Licensed7798417859637521376Core    Subtype `json:"licensed7798417859637521376core"`
-				Licensed7798417859637521376F1Micro Subtype `json:"licensed7798417859637521376f1micro"`
-				Licensed7798417859637521376G1Small Subtype `json:"licensed7798417859637521376g1small"`
-			} `json:"windows"`
-			SQLServer struct {
-				Licensed1741222371620352982Core5Ormore Subtype `json:"licensed1741222371620352982core5ormore"`
-				Licensed3039072951948447844Core5Ormore Subtype `json:"licensed3039072951948447844core5ormore"`
-				Licensed3042936622923550835Core5Ormore Subtype `json:"licensed3042936622923550835core5ormore"`
-				Licensed3398668354433905558Core5Ormore Subtype `json:"licensed3398668354433905558core5ormore"`
-				Licensed6213885950785916969Core5Ormore Subtype `json:"licensed6213885950785916969core5ormore"`
-				Licensed6795597790302237536Core5Ormore Subtype `json:"licensed6795597790302237536core5ormore"`
-			} `json:"sql_server"`
-		} `json:"microsoft"`
-		Rhel struct {
-			Licensed7883559014960410759Corerange04      Subtype `json:"licensed7883559014960410759corerange04"`
-			Licensed7883559014960410759Corerange5Ormore Subtype `json:"licensed7883559014960410759corerange5ormore"`
-		} `json:"rhel"`
-	} `json:"premium_image"`
-	Ingress struct {
-		Premium struct {
-			Networkgoogleingress   Subtype `json:"networkgoogleingress"`
-			Networkinternetingress Subtype `json:"networkinternetingress"`
-		} `json:"premium"`
-		InterRegion struct {
-			Networkinterregioningress Subtype `json:"networkinterregioningress"`
-		} `json:"inter-region"`
-		InterZone struct {
-			Networkinterzoneingress Subtype `json:"networkinterzoneingress"`
-		} `json:"inter-zone"`
-		Standard struct {
-			Networkinternetstandardtieringress Subtype `json:"networkinternetstandardtieringress"`
-		} `json:"standard"`
-		IntraZone struct {
-			Networkintrazoneingress Subtype `json:"networkintrazoneingress"`
-		} `json:"intra-zone"`
-	} `json:"ingress"`
-	VmsReservation struct {
-		CoresPerCore struct {
-			Reservationa2Highgpucore Subtype `json:"reservationa2highgpucore"`
-		} `json:"cores:_per_core"`
-		MemoryPerGb struct {
-			Reservationa2Highgpuram Subtype `json:"reservationa2highgpuram"`
-		} `json:"memory:_per_gb"`
-	} `json:"vms_reservation"`
-	Storagemultiregionalarchivesnapshotdatastorage   Subtype `json:"storagemultiregionalarchivesnapshotdatastorage"`
-	Storagemultiregionalarchivesnapshotearlydeletion Subtype `json:"storagemultiregionalarchivesnapshotearlydeletion"`
-	Storagemultiregionalarchivesnapshotretrieval     Subtype `json:"storagemultiregionalarchivesnapshotretrieval"`
-	Storageregionalarchivesnapshotearlydeletion      Subtype `json:"storageregionalarchivesnapshotearlydeletion"`
-	Storageregionalarchivesnapshotretrieval          Subtype `json:"storageregionalarchivesnapshotretrieval"`
-	MemoryPerGb                                      struct {
-		Vmimagen2Soletenancyramsoletenancyovercommitpremium Subtype `json:"vmimagen2soletenancyramsoletenancyovercommitpremium"`
-		Vmimagen2Soletenancyramsoletenancypremium           Subtype `json:"vmimagen2soletenancyramsoletenancypremium"`
-		Vmimagesoletenancyramsoletenancyovercommitpremium   Subtype `json:"vmimagesoletenancyramsoletenancyovercommitpremium"`
-	} `json:"memory:_per_gb"`
-	Management struct {
-		Agentshourscount         Subtype `json:"agentshourscount"`
-		Cloudopsagentshourscount Subtype `json:"cloudopsagentshourscount"`
-	} `json:"management"`
-	WorkloadManager struct {
-		BillingScannedResources Subtype `json:"billing/scanned_resources"`
-	} `json:"workload_manager"`
+	VmsOnDemand                                      VmsOnDemand        `json:"vms_on_demand"`
+	VmsPreemptible                                   VmsPreemptible     `json:"vms_preemptible"`
+	VmsCommit1Year                                   VmsCommit1Year     `json:"vms_commit_1_year"`
+	VmsCommit3Year                                   VmsCommit3Year     `json:"vms_commit_3_year"`
+	NetworkOther                                     NetworkOther       `json:"network_other"`
+	FlexCommit1Year                                  FlexCommit1Year    `json:"flex_commit_1_year"`
+	FlexCommit3Year                                  FlexCommit3Year    `json:"flex_commit_3_year"`
+	PremiumImage                                     PremiumImage       `json:"premium_image"`
+	Ingress                                          Ingress            `json:"ingress"`
+	VmsReservation                                   VmsReservation     `json:"vms_reservation"`
+	Storagemultiregionalarchivesnapshotdatastorage   Subtype            `json:"storagemultiregionalarchivesnapshotdatastorage"`
+	Storagemultiregionalarchivesnapshotearlydeletion Subtype            `json:"storagemultiregionalarchivesnapshotearlydeletion"`
+	Storagemultiregionalarchivesnapshotretrieval     Subtype            `json:"storagemultiregionalarchivesnapshotretrieval"`
+	Storageregionalarchivesnapshotearlydeletion      Subtype            `json:"storageregionalarchivesnapshotearlydeletion"`
+	Storageregionalarchivesnapshotretrieval          Subtype            `json:"storageregionalarchivesnapshotretrieval"`
+	MemoryPerGb                                      GCEMemoryPerGb     `json:"memory:_per_gb"`
+	Management                                       GCEManagement      `json:"management"`
+	WorkloadManager                                  GCEWorkloadManager `json:"workload_manager"`
 }
 
 type VmsOnDemand struct {
@@ -412,4 +249,243 @@ type VmsPreemptibleCoresPerCoreM3 struct {
 
 type VmsPreemptibleCoresPerCoreT2A struct {
 	Vmimagepreemptiblet2Astandardcore Subtype `json:"vmimagepreemptiblet2astandardcore"`
+}
+
+type VmsCommit1Year struct {
+	CoresPerCore              VmsCommit1YearCoresPerCore `json:"cores:_per_core"`
+	MemoryPerGb               VmsCommit1YearMemoryPerGb  `json:"memory:_per_gb"`
+	Vmwareengineucs12Moprepay Subtype                    `json:"vmwareengineucs12moprepay"`
+}
+
+type VmsCommit1YearCoresPerCore struct {
+	Commitmenta2Highgpucpu1Yv1        Subtype                      `json:"commitmenta2highgpucpu1yv1"`
+	Commitmentc2Dcpu1Yv1              Subtype                      `json:"commitmentc2dcpu1yv1"`
+	C3                                VmsCommit1YearCoresPerCoreC3 `json:"c3"`
+	Commitmentcpucomputeoptimized1Yv1 Subtype                      `json:"commitmentcpucomputeoptimized1yv1"`
+	Commitmentcpulargeinstance1Yv1    Subtype                      `json:"commitmentcpulargeinstance1yv1"`
+	Commitmentcpu1Yv1                 Subtype                      `json:"commitmentcpu1yv1"`
+	Commitmente2CPU1Yv1               Subtype                      `json:"commitmente2cpu1yv1"`
+	G2                                VmsCommit1YearCoresPerCoreG2 `json:"g2"`
+	M3                                VmsCommit1YearCoresPerCoreM3 `json:"m3"`
+	Commitmentn2CPU1Yv1               Subtype                      `json:"commitmentn2cpu1yv1"`
+	Commitmentn2Dcpu1Yv1              Subtype                      `json:"commitmentn2dcpu1yv1"`
+	Commitmentt2Dcpu1Yv1              Subtype                      `json:"commitmentt2dcpu1yv1"`
+}
+
+type VmsCommit1YearCoresPerCoreC3 struct {
+	Commitmentc3CPU1Yv1 Subtype `json:"commitmentc3cpu1yv1"`
+}
+
+type VmsCommit1YearCoresPerCoreG2 struct {
+	Commitmentg2CPU1Yv1 Subtype `json:"commitmentg2cpu1yv1"`
+}
+
+type VmsCommit1YearCoresPerCoreM3 struct {
+	Commitmentm3CPU1Yv1 Subtype `json:"commitmentm3cpu1yv1"`
+}
+
+type VmsCommit1YearMemoryPerGb struct {
+	Commitmenta2Highgpuram1Yv1        Subtype                     `json:"commitmenta2highgpuram1yv1"`
+	Commitmentc2Dram1Yv1              Subtype                     `json:"commitmentc2dram1yv1"`
+	C3                                VmsCommit1YearMemoryPerGbC3 `json:"c3"`
+	Commitmente2RAM1Yv1               Subtype                     `json:"commitmente2ram1yv1"`
+	G2                                VmsCommit1YearMemoryPerGbG2 `json:"g2"`
+	M3                                VmsCommit1YearMemoryPerGbM3 `json:"m3"`
+	Commitmentn2Dram1Yv1              Subtype                     `json:"commitmentn2dram1yv1"`
+	Commitmentn2RAM1Yv1               Subtype                     `json:"commitmentn2ram1yv1"`
+	Commitmentramcomputeoptimized1Yv1 Subtype                     `json:"commitmentramcomputeoptimized1yv1"`
+	Commitmentramlargeinstance1Yv1    Subtype                     `json:"commitmentramlargeinstance1yv1"`
+	Commitmentram1Yv1                 Subtype                     `json:"commitmentram1yv1"`
+	Commitmentt2Dram1Yv1              Subtype                     `json:"commitmentt2dram1yv1"`
+}
+
+type VmsCommit1YearMemoryPerGbC3 struct {
+	Commitmentc3RAM1Yv1 Subtype `json:"commitmentc3ram1yv1"`
+}
+
+type VmsCommit1YearMemoryPerGbG2 struct {
+	Commitmentg2RAM1Yv1 Subtype `json:"commitmentg2ram1yv1"`
+}
+
+type VmsCommit1YearMemoryPerGbM3 struct {
+	Commitmentm3RAM1Yv1 Subtype `json:"commitmentm3ram1yv1"`
+}
+
+type VmsCommit3Year struct {
+	CoresPerCore              VmsCommit3YearCoresPerCore `json:"cores:_per_core"`
+	MemoryPerGb               VmsCommit3YearMemoryPerGb  `json:"memory:_per_gb"`
+	Vmwareengineucs36Moprepay Subtype                    `json:"vmwareengineucs36moprepay"`
+}
+
+type VmsCommit3YearCoresPerCore struct {
+	Commitmenta2Highgpucpu3Yv1        Subtype                      `json:"commitmenta2highgpucpu3yv1"`
+	Commitmentc2Dcpu3Yv1              Subtype                      `json:"commitmentc2dcpu3yv1"`
+	C3                                VmsCommit3YearCoresPerCoreC3 `json:"c3"`
+	Commitmentcpucomputeoptimized3Yv1 Subtype                      `json:"commitmentcpucomputeoptimized3yv1"`
+	Commitmentcpulargeinstance1Yv1    Subtype                      `json:"commitmentcpulargeinstance1yv1"`
+	Commitmentcpulargeinstance3Yv1    Subtype                      `json:"commitmentcpulargeinstance3yv1"`
+	Commitmentcpu3Yv1                 Subtype                      `json:"commitmentcpu3yv1"`
+	Commitmente2CPU3Yv1               Subtype                      `json:"commitmente2cpu3yv1"`
+	G2                                VmsCommit3YearCoresPerCoreG2 `json:"g2"`
+	M3                                VmsCommit3YearCoresPerCoreM3 `json:"m3"`
+	Commitmentn2CPU3Yv1               Subtype                      `json:"commitmentn2cpu3yv1"`
+	Commitmentn2Dcpu3Yv1              Subtype                      `json:"commitmentn2dcpu3yv1"`
+	Commitmentt2Dcpu3Yv1              Subtype                      `json:"commitmentt2dcpu3yv1"`
+}
+
+type VmsCommit3YearCoresPerCoreC3 struct {
+	Commitmentc3CPU3Yv1 Subtype `json:"commitmentc3cpu3yv1"`
+}
+
+type VmsCommit3YearCoresPerCoreG2 struct {
+	Commitmentg2CPU3Yv1 Subtype `json:"commitmentg2cpu3yv1"`
+}
+
+type VmsCommit3YearCoresPerCoreM3 struct {
+	Commitmentm3CPU3Yv1 Subtype `json:"commitmentm3cpu3yv1"`
+}
+
+type VmsCommit3YearMemoryPerGb struct {
+	Commitmenta2Highgpuram3Yv1        Subtype                     `json:"commitmenta2highgpuram3yv1"`
+	Commitmentc2Dram3Yv1              Subtype                     `json:"commitmentc2dram3yv1"`
+	C3                                VmsCommit3YearMemoryPerGbC3 `json:"c3"`
+	Commitmente2RAM3Yv1               Subtype                     `json:"commitmente2ram3yv1"`
+	G2                                VmsCommit3YearMemoryPerGbG2 `json:"g2"`
+	M3                                VmsCommit3YearMemoryPerGbM3 `json:"m3"`
+	Commitmentn2Dram3Yv1              Subtype                     `json:"commitmentn2dram3yv1"`
+	Commitmentn2RAM3Yv1               Subtype                     `json:"commitmentn2ram3yv1"`
+	Commitmentramcomputeoptimized3Yv1 Subtype                     `json:"commitmentramcomputeoptimized3yv1"`
+	Commitmentramlargeinstance3Yv1    Subtype                     `json:"commitmentramlargeinstance3yv1"`
+	Commitmentram3Yv1                 Subtype                     `json:"commitmentram3yv1"`
+	Commitmentt2Dram3Yv1              Subtype                     `json:"commitmentt2dram3yv1"`
+}
+
+type VmsCommit3YearMemoryPerGbC3 struct {
+	Commitmentc3RAM3Yv1 Subtype `json:"commitmentc3ram3yv1"`
+}
+
+type VmsCommit3YearMemoryPerGbG2 struct {
+	Commitmentg2RAM3Yv1 Subtype `json:"commitmentg2ram3yv1"`
+}
+
+type VmsCommit3YearMemoryPerGbM3 struct {
+	Commitmentm3RAM3Yv1 Subtype `json:"commitmentm3ram3yv1"`
+}
+
+type NetworkOther struct {
+	Externalip            Subtype `json:"externalip"`
+	Externalippreemptible Subtype `json:"externalippreemptible"`
+}
+
+type FlexCommit1Year struct {
+	Gcecommitmentsucs12Mo Subtype `json:"gcecommitmentsucs12mo"`
+}
+
+type FlexCommit3Year struct {
+	Gcecommitmentsucs36Mo Subtype `json:"gcecommitmentsucs36mo"`
+}
+
+type PremiumImage struct {
+	Microsoft PremiumImageMicrosoft `json:"microsoft"`
+	Rhel      PremiumImageRhel      `json:"rhel"`
+}
+
+type PremiumImageMicrosoft struct {
+	Windows   PremiumImageMicrosoftWindows   `json:"windows"`
+	SQLServer PremiumImageMicrosoftSQLServer `json:"sql_server"`
+}
+
+type PremiumImageMicrosoftWindows struct {
+	Licensed1656378918552316916Core    Subtype `json:"licensed1656378918552316916core"`
+	Licensed1656378918552316916F1Micro Subtype `json:"licensed1656378918552316916f1micro"`
+	Licensed1656378918552316916G1Small Subtype `json:"licensed1656378918552316916g1small"`
+	Licensed3284763237085719542Core    Subtype `json:"licensed3284763237085719542core"`
+	Licensed3284763237085719542F1Micro Subtype `json:"licensed3284763237085719542f1micro"`
+	Licensed3284763237085719542G1Small Subtype `json:"licensed3284763237085719542g1small"`
+	Licensed4819555115818134498Core    Subtype `json:"licensed4819555115818134498core"`
+	Licensed4819555115818134498F1Micro Subtype `json:"licensed4819555115818134498f1micro"`
+	Licensed4819555115818134498G1Small Subtype `json:"licensed4819555115818134498g1small"`
+	Licensed4874454843789519845Core    Subtype `json:"licensed4874454843789519845core"`
+	Licensed4874454843789519845F1Micro Subtype `json:"licensed4874454843789519845f1micro"`
+	Licensed4874454843789519845G1Small Subtype `json:"licensed4874454843789519845g1small"`
+	Licensed6107784707477449232Core    Subtype `json:"licensed6107784707477449232core"`
+	Licensed6107784707477449232F1Micro Subtype `json:"licensed6107784707477449232f1micro"`
+	Licensed6107784707477449232G1Small Subtype `json:"licensed6107784707477449232g1small"`
+	Licensed7695108898142923768Core    Subtype `json:"licensed7695108898142923768core"`
+	Licensed7695108898142923768F1Micro Subtype `json:"licensed7695108898142923768f1micro"`
+	Licensed7695108898142923768G1Small Subtype `json:"licensed7695108898142923768g1small"`
+	Licensed7798417859637521376Core    Subtype `json:"licensed7798417859637521376core"`
+	Licensed7798417859637521376F1Micro Subtype `json:"licensed7798417859637521376f1micro"`
+	Licensed7798417859637521376G1Small Subtype `json:"licensed7798417859637521376g1small"`
+}
+
+type PremiumImageMicrosoftSQLServer struct {
+	Licensed1741222371620352982Core5Ormore Subtype `json:"licensed1741222371620352982core5ormore"`
+	Licensed3039072951948447844Core5Ormore Subtype `json:"licensed3039072951948447844core5ormore"`
+	Licensed3042936622923550835Core5Ormore Subtype `json:"licensed3042936622923550835core5ormore"`
+	Licensed3398668354433905558Core5Ormore Subtype `json:"licensed3398668354433905558core5ormore"`
+	Licensed6213885950785916969Core5Ormore Subtype `json:"licensed6213885950785916969core5ormore"`
+	Licensed6795597790302237536Core5Ormore Subtype `json:"licensed6795597790302237536core5ormore"`
+}
+
+type PremiumImageRhel struct {
+	Licensed7883559014960410759Corerange04      Subtype `json:"licensed7883559014960410759corerange04"`
+	Licensed7883559014960410759Corerange5Ormore Subtype `json:"licensed7883559014960410759corerange5ormore"`
+}
+
+type Ingress struct {
+	Premium     IngressPremium     `json:"premium"`
+	InterRegion IngressInterRegion `json:"inter-region"`
+	InterZone   IngressInterZone   `json:"inter-zone"`
+	Standard    IngressStandard    `json:"standard"`
+	IntraZone   IngressIntraZone   `json:"intra-zone"`
+}
+
+type IngressPremium struct {
+	Networkgoogleingress   Subtype `json:"networkgoogleingress"`
+	Networkinternetingress Subtype `json:"networkinternetingress"`
+}
+
+type IngressInterRegion struct {
+	Networkinterregioningress Subtype `json:"networkinterregioningress"`
+}
+
+type IngressInterZone struct {
+	Networkinterzoneingress Subtype `json:"networkinterzoneingress"`
+}
+
+type IngressStandard struct {
+	Networkinternetstandardtieringress Subtype `json:"networkinternetstandardtieringress"`
+}
+
+type IngressIntraZone struct {
+	Networkintrazoneingress Subtype `json:"networkintrazoneingress"`
+}
+
+type VmsReservation struct {
+	CoresPerCore VmsReservationCoresPerCore `json:"cores:_per_core"`
+	MemoryPerGb  VmsReservationMemoryPerGb  `json:"memory:_per_gb"`
+}
+
+type VmsReservationCoresPerCore struct {
+	Reservationa2Highgpucore Subtype `json:"reservationa2highgpucore"`
+}
+
+type VmsReservationMemoryPerGb struct {
+	Reservationa2Highgpuram Subtype `json:"reservationa2highgpuram"`
+}
+
+type GCEMemoryPerGb struct {
+	Vmimagen2Soletenancyramsoletenancyovercommitpremium Subtype `json:"vmimagen2soletenancyramsoletenancyovercommitpremium"`
+	Vmimagen2Soletenancyramsoletenancypremium           Subtype `json:"vmimagen2soletenancyramsoletenancypremium"`
+	Vmimagesoletenancyramsoletenancyovercommitpremium   Subtype `json:"vmimagesoletenancyramsoletenancyovercommitpremium"`
+}
+
+type GCEManagement struct {
+	Agentshourscount         Subtype `json:"agentshourscount"`
+	Cloudopsagentshourscount Subtype `json:"cloudopsagentshourscount"`
+}
+
+type GCEWorkloadManager struct {
+	BillingScannedResources Subtype `json:"billing/scanned_resources"`
 }
