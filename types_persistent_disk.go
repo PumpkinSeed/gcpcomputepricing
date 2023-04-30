@@ -58,32 +58,48 @@ type Diskops struct {
 }
 
 type PersistentDiskStandard struct {
-	Capacity struct {
-		Regional struct {
-			Regionalstoragepdcapacity Subtype `json:"regionalstoragepdcapacity"`
-		} `json:"regional"`
-		Storagepdcapacity Subtype `json:"storagepdcapacity"`
-	} `json:"capacity"`
-	Snapshot struct {
-		Storagepdsnapshot Subtype `json:"storagepdsnapshot"`
-	} `json:"snapshot"`
+	Capacity PersistentDiskStandardCapacity `json:"capacity"`
+	Snapshot PersistentDiskStandardSnapshot `json:"snapshot"`
+}
+
+type PersistentDiskStandardCapacity struct {
+	Regional          PersistentDiskStandardCapacityRegional `json:"regional"`
+	Storagepdcapacity Subtype                                `json:"storagepdcapacity"`
+}
+
+type PersistentDiskStandardCapacityRegional struct {
+	Regionalstoragepdcapacity Subtype `json:"regionalstoragepdcapacity"`
+}
+
+type PersistentDiskStandardSnapshot struct {
+	Storagepdsnapshot Subtype `json:"storagepdsnapshot"`
 }
 
 type PersistentDiskSSD struct {
-	Capacity struct {
-		Regional struct {
-			Regionalstoragepdssd Subtype `json:"regionalstoragepdssd"`
-		} `json:"regional"`
-		Storagepdssd Subtype `json:"storagepdssd"`
-		Extreme      struct {
-			Storagepdssdextremecapacity Subtype `json:"storagepdssdextremecapacity"`
-			Storagepdssdextremeiops     Subtype `json:"storagepdssdextremeiops"`
-		} `json:"extreme"`
-		Lite struct {
-			Storagepdssdlitecapacity Subtype `json:"storagepdssdlitecapacity"`
-		} `json:"lite"`
-		RegionalLite struct {
-			Storageregionalpdssdlitecapacity Subtype `json:"storageregionalpdssdlitecapacity"`
-		} `json:"regional_lite"`
-	} `json:"capacity"`
+	Capacity PersistentDiskSSDCapacity `json:"capacity"`
+}
+
+type PersistentDiskSSDCapacity struct {
+	Regional     PersistentDiskSSDCapacityRegional     `json:"regional"`
+	Storagepdssd Subtype                               `json:"storagepdssd"`
+	Extreme      PersistentDiskSSDCapacityExtreme      `json:"extreme"`
+	Lite         PersistentDiskSSDCapacityLite         `json:"lite"`
+	RegionalLite PersistentDiskSSDCapacityRegionalLite `json:"regional_lite"`
+}
+
+type PersistentDiskSSDCapacityRegional struct {
+	Regionalstoragepdssd Subtype `json:"regionalstoragepdssd"`
+}
+
+type PersistentDiskSSDCapacityExtreme struct {
+	Storagepdssdextremecapacity Subtype `json:"storagepdssdextremecapacity"`
+	Storagepdssdextremeiops     Subtype `json:"storagepdssdextremeiops"`
+}
+
+type PersistentDiskSSDCapacityLite struct {
+	Storagepdssdlitecapacity Subtype `json:"storagepdssdlitecapacity"`
+}
+
+type PersistentDiskSSDCapacityRegionalLite struct {
+	Storageregionalpdssdlitecapacity Subtype `json:"storageregionalpdssdlitecapacity"`
 }
