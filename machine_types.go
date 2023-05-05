@@ -3,7 +3,7 @@ package gcpcomputepricing
 import "errors"
 
 const (
-	E2Standard2 = "e2-standard-2"
+	E2 = "e2"
 )
 
 const (
@@ -16,43 +16,40 @@ const (
 )
 
 type Opts struct {
-	Type   string
-	Region string
+	Type        string
+	Commitment  string
+	Region      string
+	NumOfCPU    uint64
+	NumOfMemory uint64
 }
 
-type machineTypeGetter func(p *Pricing, opts Opts) (uint64, error)
-
-var machineTypeGetters = map[string]machineTypeGetter{
-	E2Standard2: getE2standard2,
+func Calculate(p *Pricing, opts Opts) (uint64, error) {
+	switch opts.Type {
+	case E2:
+		return getE2standard(p, opts)
+	}
+	return 0, errors.New("unknown type")
 }
 
-func Get(typ string, p *Pricing, opts Opts) (uint64, error) {
-	return machineTypeGetters[typ](p, opts)
-}
-
-func getE2standard2(p *Pricing, opts Opts) (uint64, error) {
-	return getE2standard(p, opts, 2, 8)
-}
-
-func getE2standard4(p *Pricing, opts Opts) (uint64, error) {
-	return getE2standard(p, opts, 4, 16)
-}
-
-func getE2standard8(p *Pricing, opts Opts) (uint64, error) {
-	return getE2standard(p, opts, 8, 32)
-}
-
-func getE2standard16(p *Pricing, opts Opts) (uint64, error) {
-	return getE2standard(p, opts, 16, 64)
-}
-
-func getE2standard32(p *Pricing, opts Opts) (uint64, error) {
-	return getE2standard(p, opts, 32, 128)
-}
-
-func getE2standard(p *Pricing, opts Opts, numOfCPU, numOfMemory uint64) (uint64, error) {
-	e2Core := p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.Vmimagee2Core
-	e2Memory := p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.Vmimagee2RAM
+func getE2standard(p *Pricing, opts Opts) (uint64, error) {
+	var e2Core Subtype
+	var e2Memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		e2Core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.Vmimagee2Core
+		e2Memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.Vmimagee2RAM
+	case Spot:
+		e2Core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.Vmimagepreemptiblee2Core
+		e2Memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.Vmimagepreemptiblee2RAM
+	case Commitment1YearResource:
+		e2Core = p.Gcp.Compute.GCE.VmsCommit1Year.CoresPerCore.Commitmente2CPU1Yv1
+		e2Memory = p.Gcp.Compute.GCE.VmsCommit1Year.MemoryPerGb.Commitmente2RAM1Yv1
+	case Commitment3YearResource:
+		e2Core = p.Gcp.Compute.GCE.VmsCommit3Year.CoresPerCore.Commitmente2CPU3Yv1
+		e2Memory = p.Gcp.Compute.GCE.VmsCommit3Year.MemoryPerGb.Commitmente2RAM3Yv1
+	default:
+		return 0, errors.New("commitment not supported") // TODO improve error
+	}
 
 	var e2CorePricePerRegion uint64 = 0
 	if region, ok := e2Core.Regions[opts.Region]; ok {
@@ -73,7 +70,7 @@ func getE2standard(p *Pricing, opts Opts, numOfCPU, numOfMemory uint64) (uint64,
 	}
 
 	var sum uint64 = 0
-	sum += e2CorePricePerRegion * numOfCPU
-	sum += e2MemoryPricePerRegion * numOfMemory
+	sum += e2CorePricePerRegion * opts.NumOfCPU
+	sum += e2MemoryPricePerRegion * opts.NumOfMemory
 	return sum, nil
 }
