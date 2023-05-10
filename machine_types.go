@@ -38,6 +38,20 @@ func CalculateMachine(p *Pricing, opts Opts) (uint64, error) {
 		return getHourly(p, opts, typeGetterE2)
 	case C3:
 		return getHourly(p, opts, typeGetterC3)
+	case N2:
+		return getHourly(p, opts, typeGetterN2)
+	case N2D:
+		return getHourly(p, opts, typeGetterN2D)
+	case T2A:
+		return getHourly(p, opts, typeGetterT2A)
+	case T2D:
+		return getHourly(p, opts, typeGetterT2D)
+	case N1:
+		return getHourly(p, opts, typeGetterN1)
+	case C2D:
+		return getHourly(p, opts, typeGetterC2D)
+	case M3:
+		return getHourly(p, opts, typeGetterM3)
 	}
 	return 0, errors.New("unknown type")
 }
@@ -83,6 +97,148 @@ func typeGetterC3(p *Pricing, opts Opts) (Subtype, Subtype, error) {
 	case Commitment3YearResource:
 		core = p.Gcp.Compute.GCE.VmsCommit3Year.CoresPerCore.C3.Commitmentc3CPU3Yv1
 		memory = p.Gcp.Compute.GCE.VmsCommit3Year.MemoryPerGb.C3.Commitmentc3RAM3Yv1
+	default:
+		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
+	}
+	return core, memory, nil
+}
+
+func typeGetterN2(p *Pricing, opts Opts) (Subtype, Subtype, error) {
+	var core Subtype
+	var memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.Vmimagen2Standardcore
+		memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.Vmimagen2Standardram
+	case Spot:
+		core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.Vmimagepreemptiblen2Standardcore
+		memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.Vmimagepreemptiblen2Standardram
+	case Commitment1YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit1Year.CoresPerCore.Commitmentn2CPU1Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit1Year.MemoryPerGb.Commitmentn2RAM1Yv1
+	case Commitment3YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit3Year.CoresPerCore.Commitmentn2CPU3Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit3Year.MemoryPerGb.Commitmentn2RAM3Yv1
+	default:
+		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
+	}
+	return core, memory, nil
+}
+
+func typeGetterN2D(p *Pricing, opts Opts) (Subtype, Subtype, error) {
+	var core Subtype
+	var memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.Vmimagen2Dstandardcore
+		memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.Vmimagen2Dstandardram
+	case Spot:
+		core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.Vmimagepreemptiblen2Dstandardcore
+		memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.Vmimagepreemptiblen2Dstandardram
+	case Commitment1YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit1Year.CoresPerCore.Commitmentn2Dcpu1Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit1Year.MemoryPerGb.Commitmentn2Dram1Yv1
+	case Commitment3YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit3Year.CoresPerCore.Commitmentn2Dcpu3Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit3Year.MemoryPerGb.Commitmentn2Dram3Yv1
+	default:
+		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
+	}
+	return core, memory, nil
+}
+
+func typeGetterT2A(p *Pricing, opts Opts) (Subtype, Subtype, error) {
+	var core Subtype
+	var memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.T2A.Vmimaget2Astandardcore
+		memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.T2A.Vmimaget2Astandardram
+	case Spot:
+		core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.T2A.Vmimagepreemptiblet2Astandardcore
+		memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.T2A.Vmimagepreemptiblet2Astandardram
+	default:
+		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
+	}
+	return core, memory, nil
+}
+
+func typeGetterT2D(p *Pricing, opts Opts) (Subtype, Subtype, error) {
+	var core Subtype
+	var memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.Vmimaget2Dstandardcore
+		memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.Vmimaget2Dstandardram
+	case Spot:
+		core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.Vmimagepreemptiblet2Dstandardcore
+		memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.Vmimagepreemptiblet2Dstandardram
+	case Commitment1YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit1Year.CoresPerCore.Commitmentt2Dcpu1Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit1Year.MemoryPerGb.Commitmentt2Dram1Yv1
+	case Commitment3YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit3Year.CoresPerCore.Commitmentt2Dcpu3Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit3Year.MemoryPerGb.Commitmentt2Dram3Yv1
+	default:
+		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
+	}
+	return core, memory, nil
+}
+
+func typeGetterN1(p *Pricing, opts Opts) (Subtype, Subtype, error) {
+	var core Subtype
+	var memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.Vmimagen1Standardcore
+		memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.Vmimagen1Standardram
+	case Spot:
+		core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.Vmimagepreemptiblen1Standardcore
+		memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.Vmimagepreemptiblen1Standardram
+	default:
+		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
+	}
+	return core, memory, nil
+}
+
+func typeGetterC2D(p *Pricing, opts Opts) (Subtype, Subtype, error) {
+	var core Subtype
+	var memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.Vmimagec2Dstandardcore
+		memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.Vmimagec2Dstandardram
+	case Spot:
+		core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.Vmimagepreemptiblec2Dstandardcore
+		memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.Vmimagepreemptiblec2Dstandardram
+	case Commitment1YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit1Year.CoresPerCore.Commitmentc2Dcpu1Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit1Year.MemoryPerGb.Commitmentc2Dram1Yv1
+	case Commitment3YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit3Year.CoresPerCore.Commitmentc2Dcpu3Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit3Year.MemoryPerGb.Commitmentc2Dram3Yv1
+	default:
+		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
+	}
+	return core, memory, nil
+}
+
+func typeGetterM3(p *Pricing, opts Opts) (Subtype, Subtype, error) {
+	var core Subtype
+	var memory Subtype
+	switch opts.Commitment {
+	case OnDemand:
+		core = p.Gcp.Compute.GCE.VmsOnDemand.CoresPerCore.M3.Vmimagem3Standardcore
+		memory = p.Gcp.Compute.GCE.VmsOnDemand.MemoryPerGb.M3.Vmimagem3Standardram
+	case Spot:
+		core = p.Gcp.Compute.GCE.VmsPreemptible.CoresPerCore.M3.Vmimagepreemptiblem3Standardcore
+		memory = p.Gcp.Compute.GCE.VmsPreemptible.MemoryPerGb.M3.Vmimagepreemptiblem3Standardram
+	case Commitment1YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit1Year.CoresPerCore.M3.Commitmentm3CPU1Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit1Year.MemoryPerGb.M3.Commitmentm3RAM1Yv1
+	case Commitment3YearResource:
+		core = p.Gcp.Compute.GCE.VmsCommit3Year.CoresPerCore.M3.Commitmentm3CPU3Yv1
+		memory = p.Gcp.Compute.GCE.VmsCommit3Year.MemoryPerGb.M3.Commitmentm3RAM3Yv1
 	default:
 		return Subtype{}, Subtype{}, errors.New("commitment not supported") // TODO improve error
 	}
